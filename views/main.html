@@ -1,0 +1,573 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+	2017 SAC Edition
+	Korea Science Academy 16-077 Won-Joon Lee
+    The original work has been modified.
+
+
+    말도 많고 탈도 많은 쌕머니였지만 전산화팀 정말 다들 너무 수고 많았고 자주 불안정했는데도 잘 사용해준 쌕추위들, 각 써클들, 도현이 형 다들 너무 고맙고 쌕 진행하면서 그리고 쌕머니 전산화팀 이끌면서 골머리 터졌던 우창이 형 (개인적으로는 할많하않이지만) 수고하셨어요!
+    - 171113 이원준
+-->
+
+<html>
+	<head>
+		<title>2017 SAC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link href="http://ksasac2017.tk/favicon.ico"  rel="icon" type="image/x-icon"/>
+		<link href="http://ksasac2017.tk/favicon.ico"  rel="shortcut icon" type="image/x-icon"/>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="content">
+							<div class="inner">
+								<h1>&nbsp; 2017 SAC &nbsp;</h1>
+							</div>
+						</div>
+						<nav>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+                        <!-- account -->
+                            <article id="account">
+                                <section>
+                                    <h2 class="major">Account</h2>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span>ID</span>
+                                            </td>
+                                            <td>
+                                                <span id="acc_ID"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>Name</span>
+                                            </td>
+                                            <td>
+                                                <span id="acc_Name"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>Balance</span>
+                                            </td>
+                                            <td>
+                                                <span id="acc_Balance"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <form method="post" onsubmit="return confirm('Do you really want to log out?');" action="../account/logout">
+                                        <ul class="actions">
+                                            <li><input type="submit" class="special" value="Logout" /></li>
+                                        </ul>
+                                    </form>
+                                </section>
+
+								<section>
+									<h2 class="major">Password Change</h2>
+									<form method="post" onsubmit="document.getElementById('Old_Pass').value = RSA_encrypt_s(document.getElementById('Old_Pass').value); document.getElementById('New_Pass').value = RSA_encrypt_s(document.getElementById('New_Pass').value); return confirm('Do you really want to change the password?');" action="../account/pass_change" autocomplete="off">
+										<!-- Get this old password and new password, check it and change it. If old password is wrong, please redirect to #account -170721 16-077 -->
+										<div class="field half first">
+											<label for="Old Password">Old Password</label>
+											<input type="password" name="Old_Pass" id="Old_Pass" value="" onkeypress="return document.getElementById('Old_Pass').value.length<12"/>
+										</div>
+										<div class="field half">
+											<label for="New Password">New Password</label>
+											<input type="password" name="New_Pass" id="New_Pass" value="" onkeypress="return document.getElementById('New_Pass').value.length<12"/>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" class="special" value="Submit" /></li>
+										</ul>
+									</form>
+								</section>
+
+								<section>
+									<h2 class="major">Payment PIN Change</h2>
+									<form method="post" onsubmit="document.getElementById('Old_Pin').value = RSA_encrypt_s(document.getElementById('Old_Pin').value); document.getElementById('New_Pin').value = RSA_encrypt_s(document.getElementById('New_Pin').value);return confirm('Do you really want to change the payment PIN?');" action="../account/pin_change" autocomplete="off">
+										<!-- Get this old password and new password, check it and change it. If old password is wrong, please redirect to #account -170721 16-077 -->
+										<div class="field half first">
+											<label for="Old Pin">Old Pin</label>
+											<input type="password" name="Old_Pin" id="Old_Pin" value="" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && document.getElementById('Old_Pin').value.length<4"/>
+										</div>
+										<div class="field half">
+											<label for="New Pin">New Pin</label>
+											<input type="password" name="New_Pin" id="New_Pin" value="" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && document.getElementById('New_Pin').value.length<4"/>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" class="special" value="Submit" /></li>
+										</ul>
+									</form>
+								</section>
+                            </article>
+
+						<!-- SFest -->
+							<article id="SFest">
+								<h2 class="major">Song Festival</h2>
+								<!-- Betting-->
+								<div id="SFestControl"></div>
+							</article>
+                        
+						<!-- Check-In -->
+							<article id="checkin">
+								<h2 class="major">Check-In</h2>
+								<table id = "checkInTable">
+									<thead>
+										<tr>
+											<th>
+												Index
+											</th>
+											<th>
+												Name
+											</th>
+										</tr>
+									</thead>
+									<tbody id="checkInTbody">
+									</tbody>
+									<tfoot id="checkInTfoot">
+									</tfoot>
+								</table>
+							</article>
+                        
+						<!-- Coupon -->
+							<article id="coupon">
+								<h2 class="major">Coupon</h2>
+								<form method="post" action="../coupon/use" autocomplete="off">
+									<label for="Coup_Num">Coupon Number</label>
+									<input type="text" name="Coup_Num" id="Coup_Num" value=""/>
+									<ul class="actions">
+										<li><input type="submit" class="special" value="Submit" /></li>
+									</ul>
+								</form>
+							</article>
+                        
+						<!-- auction -->
+							<article id="auction">
+								<h2 class="major">Auction</h2>
+								<form method="post" action="../auction/bid" onkeypress='return event.charCode >= 48 && event.charCode <= 57' onpaste="return false;" onsubmit="document.getElementById('tempBid').value = RSA_encrypt_s(document.getElementById('BidMoney').value);" autocomplete="off">
+                                    <div class="field half first">
+                                        <span class="image thumb" id="image_thumb"><img src="" alt=""/></span>
+                                    </div>
+                                    <div class="field half">
+                                        <label class="center" id="prize_desc"></label>
+                                        <!-- Please write prize description in 2 lines... -170721 16-077 -->
+                                        <label class="center" id="now_bid"></label>
+										<fieldset disabled="true" id="AucInput">
+											<div class="field">
+												<input type="number" name="BidMoney" id="BidMoney" value="" placeholder="Money To Bid"/>
+											</div>
+											<input style="display:none"  type="text" name="tempBid" id="tempBid" value=""/>
+											<ul class="actions">
+												<li><input type="submit" class="special" value="Bid"/></li>
+											</ul>
+										</fieldset>
+                                    </div>
+                                </form>
+							</article>
+
+						<!-- schedule -->
+							<article id="schedule">
+								<h2 class="major">Schedule</h2>
+								<label> Event </label>
+								<table id="EvTable">
+								</table>
+								<label> All-Time Booth </label>
+								<table id="BthTable">
+								</table>
+							</article>
+                        
+						<!-- help -->
+							<article id="help">		
+								<h2 class="major">Lost card?</h2>
+                                <form method="post" onsubmit="return confirm('Do you really want to stop the card?');" action="../account/suspend">
+                                    <div class="field half first">
+                                        <span class="image map"><img src="images/InfoBooth.png" alt=""></span>
+                                        <!-- This is temporary image. Ratio of this image should be 7:4 -->
+                                    </div>
+                                    <div class="field half">
+                                        <ol>
+                                            <li>Press [Stop Card]</li>
+                                            <li>Go to the Information Booth</li>
+                                            <li>Get a new card</li>
+                                        </ol>
+										<ul class="actions">
+											<li><input type="submit" class="special" value="Stop Card" /></li>
+										</ul>
+                                    </div>
+                                </form>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">Contact</h2>
+                                <label>17' Department of Art &amp; Culture</label>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            15 Leader
+                                        </td>
+                                        <td>
+                                            정우창
+                                        </td>
+                                        <td>
+                                            <a href="tel:010-8377-9670">Call</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            16 Deputy
+                                        </td>
+                                        <td>
+                                            유장목
+                                        </td>
+                                        <td>
+                                            <a href="tel:010-7279-7047">Call</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            조현성
+                                        </td>
+                                        <td>
+                                            <a href="tel:010-9395-3144">Call</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            17 Deputy
+                                        </td>
+                                        <td>
+                                            김동인
+                                        </td>
+                                        <td>
+                                            <a href="tel:010-3948-3693">Call</a>
+                                        </td>
+                                    </tr>
+                                </table><label>17' SAC Money Team</label>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Computerization Team
+                                        </td>
+                                        <td>
+                                            16
+                                        </td>
+                                        <td>강래현 김기환 김상범 이원준</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            17
+                                        </td>
+                                        <td>김도형 심혁</td>
+                                    </tr>
+                                </table>
+                            	<ul class="actions">
+									<li><a href="https://www.facebook.com/KSASAC2017/" class="button special icon fa-facebook">SAC 2017</a></li>
+								</ul>
+							</article>
+
+						<!-- Navi -->
+							<article id="navi">
+								<h2 class="major">Navigation</h2>
+								<div id="navi_result"></div>
+								<script>
+                                    function navi_call(to){
+                                        var from = prompt("Input current location!");
+                                        var naviHttp = new XMLHttpRequest();
+                                        naviHttp.onreadystatechange = function(){
+                                            if(this.readyState == 4 && this.status == 200){
+                                                var res = this.responseText;
+                                                if (res == "Empty"){from = prompt("Input current location!");}
+                                                else if(res == "Invalid"){from = prompt("Cannot find such location in DB. Please input exact location again.");}
+                                                else{document.getElementById("navi_result").innerHTML=res;}
+                                            }
+                                        }
+                                        naviHttp.open("GET","../navi?from="+from+"&to="+to);
+                                        naviHttp.send()
+
+                                        window.location="#navi";
+                                    }
+								</script>
+							</article>
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions vertical">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button special">Special</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button special icon fa-download">Icon</a></li>
+										<li><a href="#" class="button icon fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button special disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="field half first">
+											<label for="demo-name">Name</label>
+											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+										</div>
+										<div class="field half">
+											<label for="demo-email">Email</label>
+											<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+										</div>
+										<div class="field">
+											<label for="demo-category">Category</label>
+											<div class="select-wrapper">
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+										</div>
+										<div class="field half first">
+											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+											<label for="demo-priority-low">Low</label>
+										</div>
+										<div class="field half">
+											<input type="radio" id="demo-priority-high" name="demo-priority">
+											<label for="demo-priority-high">High</label>
+										</div>
+										<div class="field half first">
+											<input type="checkbox" id="demo-copy" name="demo-copy">
+											<label for="demo-copy">Email me a copy</label>
+										</div>
+										<div class="field half">
+											<input type="checkbox" id="demo-human" name="demo-human" checked>
+											<label for="demo-human">Not a robot</label>
+										</div>
+										<div class="field">
+											<label for="demo-message">Message</label>
+											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="special" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+
+					</div>
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; 2017 SAC. <br> Design: 17' SAC Money Team + <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/untitled.js"></script>
+	</body>
+</html>

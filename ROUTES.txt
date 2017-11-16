@@ -1,0 +1,45 @@
+﻿GET /
+: /main 으로 리다이렉트
+
+GET /main
+: 메인 페이지
+
+GET /login
+: 로그인 페이지
+
+=========================
+
+POST /account/login
+: 로그인 처리
+Field: Stu_ID, Stu_Pass
+
+POST /account/logout
+: 로그아웃 처리
+Field: 없음
+
+GET /account/info
+: 현재 로그인한 계정 ID \n 현재 로그인한 계정 사용자 이름 \n  현재 로그인한 계정 잔액(숫자만)
+
+GET /account/status # DB 구현 필요
+: 현재 로그인한 계정 상태(정상: OK, 정지됨: SUSPENDED)
+
+*POST /account/pass_change
+: 패스워드 변경	
+Field: Old_Pass, New_Pass
+
+*POST /account/suspend
+: 계정 정지
+Field: 없음
+
+=========================
+
+*GET /auction/info
+: 현재 경매 물품 이미지 \n 현재 경매 물품 설명 텍스트('\n' 포함 두 줄) \n 현재 경매가(정확히 숫자만)
+
+*POST /auction/bid
+: 경매에 쌕머니 걸기
+Field: BidMoney
+
+=========================
+
+*GET

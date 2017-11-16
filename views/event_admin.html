@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	2017 SAC Edition
+	Korea Science Academy 16-077 Won-Joon Lee
+    The original work has been modified.
+-->
+<html>
+	<head>
+		<title>2017 SAC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+                        <article id="admin">
+                            <h2 class="major"><%= event_full %> Admin - <%= part %> <%= current %></h2>
+							<span><%= result %></span>
+                            <form method="post" action="../<%= event %>/end">
+                                <input type="submit" class="special" value="End current <%= part %>" />
+                            </form>
+                            <form method="post" action="../<%= event %>/next">
+                                <input type="submit" class="special" value="Move to next" />
+                            </form>
+                            <form method="post" action="../<%= event %>/start">
+                                <input type="submit" class="special" value="Start <%= part %>" />
+							</form>
+                            <form method="post" action="../<%= event %>/back">
+                                <input type="submit" class="special" value="Move back" />
+                            </form>
+                        </article>
+					</header>
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; 2017 SAC. <br> Design: 17' SAC Money Team + <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/skel.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

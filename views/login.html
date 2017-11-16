@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	2017 SAC Edition
+	Korea Science Academy 16-077 Won-Joon Lee
+    The original work has been modified.
+-->
+<html>
+	<head>
+		<title>2017 SAC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="http://ksasac2017.tk/favicon.ico"  rel="icon" type="image/x-icon"/>
+		<link href="http://ksasac2017.tk/favicon.ico"  rel="shortcut icon" type="image/x-icon"/>
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+						<div class="content">
+							<div class="inner">
+								<h1>&nbsp; 2017 SAC &nbsp;</h1>
+							</div>
+						</div>
+						<nav>
+							<ul>
+                                <li><a href="#login">Log in</a></li>
+							</ul>
+						</nav>
+					</header>
+				<!-- Main -->
+					<div id="main">
+                        <article id="login">
+                            <h2 class="major">Log in</h2>
+                                    <form method="post" action="../account/login" onsubmit="document.getElementById('PW').value=RSA_encrypt_s(document.getElementById('PW').value);" autocomplete="off">
+                                        <!-- Get this information and check it. If something is wrong, please redirect to #login -170721 16-077 -->
+                                        <div class="field half first">
+                                            <label for="ID">ID</label>
+                                            <input type="text" name="Stu_ID" id="ID" value=""/>
+                                        </div>
+                                        <div class="field half">
+                                            <label for="PW">Password</label>
+                                            <input type="password" name="Stu_Pass" id="PW" value=""/>
+                                        </div>
+                                        <ul class="actions">
+                                            <li><input type="submit" class="special" value="Submit"/></li>
+                                        </ul>
+                                    </form>
+                        </article>
+					</div>
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; 2017 SAC. <br> Design: 17' SAC Money Team + <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+			</div>
+		<!-- BG -->
+			<div id="bg"></div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/untitled.js"></script>
+	</body>
+</html>
